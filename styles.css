@@ -1,88 +1,36 @@
-/* === style.css === */
-@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600&display=swap');
-
-* {
-  box-sizing: border-box;
+body {
+  font-family: sans-serif;
   margin: 0;
   padding: 0;
-}
-
-body {
-  font-family: 'Nunito', sans-serif;
   background: linear-gradient(135deg, #fceff9, #f9f4fc);
-  color: #333;
-  min-height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 20px;
+  height: 100vh;
 }
 
 .container {
-  background: rgba(255, 255, 255, 0.75);
+  background: white;
   padding: 30px;
-  border-radius: 24px;
-  backdrop-filter: blur(10px);
-  box-shadow: 0 10px 25px rgba(180, 140, 255, 0.2);
-  width: 100%;
-  max-width: 500px;
-  text-align: center;
-  border: 1px solid #f3e8ff;
+  border-radius: 15px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+  max-width: 400px;
+  width: 90%;
 }
 
-h1, h2 {
-  margin-bottom: 20px;
+h1 {
   color: #8a4fff;
 }
 
-form {
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
-  margin-top: 10px;
-}
-
-input, textarea {
-  padding: 12px;
-  border: 1px solid #e0d4f7;
-  border-radius: 12px;
-  font-size: 16px;
-  background-color: #faf7fd;
-  color: #444;
-  outline: none;
-  transition: border 0.3s ease;
-}
-
-input:focus, textarea:focus {
-  border-color: #c69fff;
-}
-
 button {
-  padding: 12px;
-  border: none;
-  border-radius: 12px;
-  background: linear-gradient(135deg, #e0bbff, #caa9f7);
+  background: #8a4fff;
   color: white;
-  font-weight: bold;
+  padding: 10px;
+  border: none;
+  border-radius: 8px;
   cursor: pointer;
-  transition: all 0.3s ease;
 }
 
 button:hover {
-  background: linear-gradient(135deg, #caa9f7, #e0bbff);
-}
-
-.posts {
-  margin-top: 25px;
-  text-align: left;
-}
-
-.post-item {
-  background: rgba(255, 255, 255, 0.6);
-  padding: 14px;
-  border-radius: 12px;
-  margin-bottom: 12px;
-  word-break: break-word;
-  border: 1px solid #f0e4ff;
-  color: #444;
+  background: #a178ff;
 }
