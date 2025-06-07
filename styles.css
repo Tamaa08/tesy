@@ -1,24 +1,24 @@
-/* Import font */
+/* === style.css === */
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
 
 body {
   font-family: 'Poppins', sans-serif;
   margin: 0;
   padding: 0;
-  background: linear-gradient(135deg, #667eea, #764ba2);
+  background: linear-gradient(135deg, #1e3c72, #2a5298);
   color: #fff;
   min-height: 100vh;
   display: flex;
-  align-items: center;
   justify-content: center;
+  align-items: center;
 }
 
 .container {
-  background: rgba(255, 255, 255, 0.08);
-  backdrop-filter: blur(15px);
+  background: rgba(255, 255, 255, 0.1);
   padding: 30px;
   border-radius: 20px;
-  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
   width: 90%;
   max-width: 500px;
   text-align: center;
@@ -40,11 +40,6 @@ input, textarea {
   border-radius: 10px;
   font-size: 16px;
   outline: none;
-  resize: none;
-}
-
-textarea {
-  height: 100px;
 }
 
 button {
@@ -52,9 +47,8 @@ button {
   border: none;
   border-radius: 10px;
   background: linear-gradient(135deg, #00c6ff, #0072ff);
-  color: #fff;
-  font-weight: 600;
-  font-size: 16px;
+  color: white;
+  font-weight: bold;
   cursor: pointer;
   transition: all 0.3s ease;
 }
@@ -63,28 +57,86 @@ button:hover {
   background: linear-gradient(135deg, #0072ff, #00c6ff);
 }
 
-a {
-  color: #ffffff;
-  text-decoration: underline;
-}
-
 .posts {
-  margin-top: 30px;
+  margin-top: 20px;
   text-align: left;
 }
 
 .post-item {
   background: rgba(255, 255, 255, 0.15);
-  padding: 15px;
+  padding: 12px;
   border-radius: 10px;
   margin-bottom: 10px;
-  color: #fff;
   word-break: break-word;
 }
 
-/* Responsive Design */
-@media screen and (max-width: 600px) {
-  .container {
-    padding: 20px;
+/* === script.js === */
+document.addEventListener("DOMContentLoaded", function () {
+  const registerForm = document.getElementById("registerForm");
+  const loginForm = document.getElementById("loginForm");
+  const postForm = document.getElementById("postForm");
+  const postList = document.getElementById("postList");
+  const usernameDisplay = document.getElementById("usernameDisplay");
+
+  if (registerForm) {
+    registerForm.addEventListener("submit", function (e) {
+      e.preventDefault();
+      const username = document.getElementById("regUsername").value;
+      const password = document.getElementById("regPassword").value;
+      const confirm = document.getElementById("regConfirmPassword").value;
+
+      if (password !== confirm) {
+        alert("Password tidak cocok!");
+        return;
+      }
+
+      localStorage.setItem("username", username);
+      localStorage.setItem("isLoggedIn", "true");
+      window.location.href = "beranda.html";
+    });
   }
+
+  if (loginForm) {
+    loginForm.addEventListener("submit", function (e) {
+      e.preventDefault();
+      const username = document.getElementById("loginUsername").value;
+
+      if (username === localStorage.getItem("username")) {
+        localStorage.setItem("isLoggedIn", "true");
+        window.location.href = "beranda.html";
+      } else {
+        alert("Username tidak ditemukan!");
+      }
+    });
+  }
+
+  if (usernameDisplay) {
+    const username = localStorage.getItem("username");
+    const isLoggedIn = localStorage.getItem("isLoggedIn");
+
+    if (isLoggedIn !== "true") {
+      window.location.href = "login.html";
+    } else {
+      usernameDisplay.textContent = username;
+    }
+  }
+
+  if (postForm && postList) {
+    postForm.addEventListener("submit", function (e) {
+      e.preventDefault();
+      const content = document.getElementById("postContent").value;
+
+      const postItem = document.createElement("div");
+      postItem.className = "post-item";
+      postItem.textContent = content;
+      postList.prepend(postItem);
+      postForm.reset();
+    });
+  }
+});
+
+function logout() {
+  localStorage.removeItem("username");
+  localStorage.setItem("isLoggedIn", "false");
+  window.location.href = "login.html";
 }
