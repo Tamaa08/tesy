@@ -1,52 +1,67 @@
 /* === style.css === */
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600&display=swap');
 
-body {
-  font-family: 'Poppins', sans-serif;
+* {
+  box-sizing: border-box;
   margin: 0;
   padding: 0;
-  background: linear-gradient(135deg, #1e3c72, #2a5298);
-  color: #fff;
+}
+
+body {
+  font-family: 'Nunito', sans-serif;
+  background: linear-gradient(135deg, #fceff9, #f9f4fc);
+  color: #333;
   min-height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
+  padding: 20px;
 }
 
 .container {
-  background: rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.75);
   padding: 30px;
-  border-radius: 20px;
+  border-radius: 24px;
   backdrop-filter: blur(10px);
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
-  width: 90%;
+  box-shadow: 0 10px 25px rgba(180, 140, 255, 0.2);
+  width: 100%;
   max-width: 500px;
   text-align: center;
+  border: 1px solid #f3e8ff;
 }
 
 h1, h2 {
   margin-bottom: 20px;
+  color: #8a4fff;
 }
 
 form {
   display: flex;
   flex-direction: column;
   gap: 15px;
+  margin-top: 10px;
 }
 
 input, textarea {
   padding: 12px;
-  border: none;
-  border-radius: 10px;
+  border: 1px solid #e0d4f7;
+  border-radius: 12px;
   font-size: 16px;
+  background-color: #faf7fd;
+  color: #444;
   outline: none;
+  transition: border 0.3s ease;
+}
+
+input:focus, textarea:focus {
+  border-color: #c69fff;
 }
 
 button {
   padding: 12px;
   border: none;
-  border-radius: 10px;
-  background: linear-gradient(135deg, #00c6ff, #0072ff);
+  border-radius: 12px;
+  background: linear-gradient(135deg, #e0bbff, #caa9f7);
   color: white;
   font-weight: bold;
   cursor: pointer;
@@ -54,89 +69,20 @@ button {
 }
 
 button:hover {
-  background: linear-gradient(135deg, #0072ff, #00c6ff);
+  background: linear-gradient(135deg, #caa9f7, #e0bbff);
 }
 
 .posts {
-  margin-top: 20px;
+  margin-top: 25px;
   text-align: left;
 }
 
 .post-item {
-  background: rgba(255, 255, 255, 0.15);
-  padding: 12px;
-  border-radius: 10px;
-  margin-bottom: 10px;
+  background: rgba(255, 255, 255, 0.6);
+  padding: 14px;
+  border-radius: 12px;
+  margin-bottom: 12px;
   word-break: break-word;
-}
-
-/* === script.js === */
-document.addEventListener("DOMContentLoaded", function () {
-  const registerForm = document.getElementById("registerForm");
-  const loginForm = document.getElementById("loginForm");
-  const postForm = document.getElementById("postForm");
-  const postList = document.getElementById("postList");
-  const usernameDisplay = document.getElementById("usernameDisplay");
-
-  if (registerForm) {
-    registerForm.addEventListener("submit", function (e) {
-      e.preventDefault();
-      const username = document.getElementById("regUsername").value;
-      const password = document.getElementById("regPassword").value;
-      const confirm = document.getElementById("regConfirmPassword").value;
-
-      if (password !== confirm) {
-        alert("Password tidak cocok!");
-        return;
-      }
-
-      localStorage.setItem("username", username);
-      localStorage.setItem("isLoggedIn", "true");
-      window.location.href = "beranda.html";
-    });
-  }
-
-  if (loginForm) {
-    loginForm.addEventListener("submit", function (e) {
-      e.preventDefault();
-      const username = document.getElementById("loginUsername").value;
-
-      if (username === localStorage.getItem("username")) {
-        localStorage.setItem("isLoggedIn", "true");
-        window.location.href = "beranda.html";
-      } else {
-        alert("Username tidak ditemukan!");
-      }
-    });
-  }
-
-  if (usernameDisplay) {
-    const username = localStorage.getItem("username");
-    const isLoggedIn = localStorage.getItem("isLoggedIn");
-
-    if (isLoggedIn !== "true") {
-      window.location.href = "login.html";
-    } else {
-      usernameDisplay.textContent = username;
-    }
-  }
-
-  if (postForm && postList) {
-    postForm.addEventListener("submit", function (e) {
-      e.preventDefault();
-      const content = document.getElementById("postContent").value;
-
-      const postItem = document.createElement("div");
-      postItem.className = "post-item";
-      postItem.textContent = content;
-      postList.prepend(postItem);
-      postForm.reset();
-    });
-  }
-});
-
-function logout() {
-  localStorage.removeItem("username");
-  localStorage.setItem("isLoggedIn", "false");
-  window.location.href = "login.html";
+  border: 1px solid #f0e4ff;
+  color: #444;
 }
